@@ -1,15 +1,4 @@
-FROM nginxinc/nginx-unprivileged@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
-USER 0
-RUN apk add --no-cache --upgrade \
-    brotli-libs=1.2.1-r0 \
-    curl=8.23.0-r0 \
-    libcurl=8.23.0-r0 \
-    libexpat=2.10.0-r0 \
-    libx11=1.8.14-r0 \
-    libxslt=1.1.43-r4 \
-    musl=1.2.6-r3 \
-    musl-utils=1.2.6-r3 \
-    nginx=1.30.7-r0
+FROM nginx/nginx-unprivileged@sha256:8432c57ac86f178741af2b89948bd9087cb9df1c415bc1ab4d23735c4f0e3e61
 LABEL org.nddev.fixture="std0004-native-container"
 COPY --chmod=0644 index.html /usr/share/nginx/html/index.html
 USER 101:101
