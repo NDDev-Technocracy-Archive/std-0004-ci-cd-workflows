@@ -94,7 +94,7 @@ jobs:
         pub-cache: 'false'
     - name: Select the fixture minimum supported Rust compiler
       if: ${{ matrix.profile == 'rust' }}
-      uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec
+      uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc
       with:
         toolchain: 1.99.0
         components: rustfmt, clippy
@@ -367,7 +367,7 @@ jobs:
         version: 0.13.5
         enable-cache: 'false'
         python-version: '3.13'
-    - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec
+    - uses: dtolnay/rust-toolchain@df2a88e9fe4098bad09cb42c3dec7187f15861fc
       with:
         toolchain: nightly-2026-10-19
         components: rust-src
