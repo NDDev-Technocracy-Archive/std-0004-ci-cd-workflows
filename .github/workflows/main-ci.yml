@@ -15,20 +15,16 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+    - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/prepare@6bd06a55307dccfd7057c1c3260067eb8adc93a1 # v0.6.79
       with:
-        persist-credentials: false
         fetch-depth: 0
+        python-version: '3.13.18'
+        uv-version: '0.13.5'
     - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3
       with:
         just-version: '1.59.0'
     - name: Prepare pinned job-local native tools
       run: scripts/prepare-linux-tools.sh security
-    - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e
-      with:
-        version: 0.13.5
-        python-version: '3.13'
-        enable-cache: 'false'
     - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/ci@60f52ba1978b97343483a45d22edb6e338e0e3f5
   native:
     name: native (${{ matrix.profile }})
