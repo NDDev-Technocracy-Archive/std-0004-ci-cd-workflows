@@ -41,7 +41,7 @@ jobs:
       status: ${{ steps.complete.outputs.status }}
     steps:
       - name: Observe runner egress with the public community action
-        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -49,7 +49,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - id: initialize
-        uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           languages: ${{ inputs.languages }}
           queries: security-extended
@@ -62,7 +62,7 @@ jobs:
         run: bash --noprofile --norc -euo pipefail -c "$CODEQL_BUILD_COMMAND"
       - name: Analyze the actual source and upload native SARIF
         if: ${{ !cancelled() && steps.initialize.outcome == 'success' && (inputs.build-command == '' || steps.build.outcome == 'success') }}
-        uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           output: ${{ runner.temp }}/nddev-codeql-sarif
       - name: Fetch the exact reviewed reusable implementation separately from caller source
@@ -74,7 +74,7 @@ jobs:
           path: .nddev-shared-security
           persist-credentials: false
       - if: ${{ !cancelled() && steps.initialize.outcome == 'success' }}
-        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: '0.13.5'
           enable-cache: 'false'
